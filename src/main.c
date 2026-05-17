@@ -11,6 +11,7 @@
 #include <string.h>
 #include "arsiv.h"
 #include "utils.h"
+#include "dosya.h"
 
 #define MAX_DOSYA_SAYISI 32
 
@@ -59,12 +60,18 @@ int main(int argc, char *argv[]) {
         }
 
         printf("-b modu secildi.\n");
-        printf("Arsiv adi: %s\n", arsivAdi);
-        printf("Dosya sayisi: %d\n", dosyaSayisi);
+printf("Arsiv adi: %s\n", arsivAdi);
+printf("Dosya sayisi: %d\n", dosyaSayisi);
 
-        for (i = 0; i < dosyaSayisi; i++) {
-            printf("Dosya %d: %s\n", i + 1, dosyalar[i]);
-        }
+for (i = 0; i < dosyaSayisi; i++) {
+    printf("Dosya %d: %s\n", i + 1, dosyalar[i]);
+}
+
+if (!dosyalariKontrolEt(dosyalar, dosyaSayisi)) {
+    return 1;
+}
+
+arsivOlustur(dosyalar, dosyaSayisi, arsivAdi);
 
         arsivOlustur(dosyalar, dosyaSayisi, arsivAdi);
     }
